@@ -1,6 +1,3 @@
-Author: John Lipor
-Contact: john.lipor@gmail.com
-
 The included files are intended for those using the AirNow gateway for environmental data.
 http://airnowgateway.org/
 To access the gateway, a username and password are required.
