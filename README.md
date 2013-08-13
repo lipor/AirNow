@@ -1,4 +1,3 @@
-README for AirNow github repository
 Author: John Lipor
 Contact: john.lipor@gmail.com
 

@@ -34,3 +34,4 @@ fOut = open(os.getcwd() + '/sites.dat','wb')
 for item in sites:
     item = item + '\n'
     fOut.write(item.encode())
+fOut.close()

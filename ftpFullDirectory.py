@@ -30,8 +30,8 @@ allData = numpy.zeros((len(sites),len(dataFiles)))
 # place data into an array with locations defined by sites above
 # missing data points become -999
 
-for ind in range(len(dataFiles)):
-#for ind in range(1):
+#for ind in range(len(dataFiles)):
+for ind in range(1):
     fIn = 'HourlyData/' + dataFiles[ind]
     snapshot = -999*numpy.ones(len(sites))
     
@@ -51,5 +51,6 @@ for ind in range(len(dataFiles)):
 ftp.quit()
 
 # write ozone data from every file to a new column in output file
-fOut = open(os.getcwd() + '/HourlyData.dat','wb')
+fOut = open(os.getcwd() + '/NewData.dat','wb')
 numpy.savetxt(fOut,allData)
+fOut.close()
