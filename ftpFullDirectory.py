@@ -5,6 +5,7 @@ ftp = FTP('ftp.airnowgateway.org')
 uName = input('Username: ')
 pWord = input('Password: ')
 ftp.login(uName,pWord)
+ftp.login(uName,pWord)
 
 # get list of sites from local file (taken from ftp server)
 sites = []
@@ -30,8 +31,8 @@ allData = numpy.zeros((len(sites),len(dataFiles)))
 # place data into an array with locations defined by sites above
 # missing data points become -999
 
-#for ind in range(len(dataFiles)):
-for ind in range(1):
+for ind in range(len(dataFiles)):
+#for ind in range(1):
     fIn = 'HourlyData/' + dataFiles[ind]
     snapshot = -999*numpy.ones(len(sites))
     
@@ -41,8 +42,9 @@ for ind in range(1):
                 dataArray = data.split('|')
                 if dataArray[5] == 'OZONE':
                     dataSite = dataArray[2]
-                    dataInd = sites.index(dataSite)
-                    snapshot[dataInd] = dataArray[7]
+                    if dataSite in sites:
+                        dataInd = sites.index(dataSite)
+                        snapshot[dataInd] = dataArray[7]
         ftpName.retrlines('RETR ' + filename, dataCallback)
         
     ftpReadFile(ftp, fIn)
@@ -51,6 +53,6 @@ for ind in range(1):
 ftp.quit()
 
 # write ozone data from every file to a new column in output file
-fOut = open(os.getcwd() + '/NewData.dat','wb')
+fOut = open(os.getcwd() + '/HourlyData2.dat','wb')
 numpy.savetxt(fOut,allData)
 fOut.close()
